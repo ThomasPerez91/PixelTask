@@ -2,7 +2,6 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 import { db } from "@/lib/db";
-import { list } from "unsplash-js/dist/methods/photos";
 
 export async function GET(
   req: Request,
