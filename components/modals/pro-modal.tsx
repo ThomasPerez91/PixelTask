@@ -30,13 +30,7 @@ export const ProModal = () => {
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
       <DialogContent className="max-w-md p-0 overflow-hidden">
         <div className="aspect-video relative flex items-center justify-center">
-          <Image
-            src="/hero.png"
-            alt="Hero"
-            className="object-cover"
-            fill
-            sizes="28px"
-          />
+          <Image src="/hero.png" alt="Hero" className="object-cover" fill />
         </div>
         <div className="text-neutral-700 mx-auto space-y-6 p-6">
           <h2 className="font-semibold text-xl">
