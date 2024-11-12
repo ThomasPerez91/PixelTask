@@ -10,7 +10,6 @@ import { createCard } from "@/actions/create-card";
 import { FormSubmit } from "@/components/form/form-submit";
 import { FormTextarea } from "@/components/form/form-textarea";
 import { Button } from "@/components/ui/button";
-import { on } from "events";
 import { toast } from "sonner";
 
 interface CardFormProps {

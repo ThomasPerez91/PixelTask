@@ -1,7 +1,6 @@
 import { ModalProvider } from "@/components/providers/modal-provider";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Query } from "@tanstack/react-query";
 import { Toaster } from "sonner";
 
 const PlatformLayout = ({ children }: { children: React.ReactNode }) => {

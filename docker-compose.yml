@@ -1,0 +1,43 @@
+services:
+  taskify:
+    container_name: taskify
+    build:
+      context: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: >
+      sh -c "
+      npx prisma generate &&
+      npx prisma migrate deploy &&
+      npm run dev
+      "
+    depends_on:
+      taskify_db:
+        condition: service_healthy
+
+  taskify_db:
+    container_name: taskify_db
+    image: postgres:16
+    restart: always
+    volumes:
+      - postgres_taskify_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "taskify_db", "-p", "5432", "-d", "${POSTGRES_DB}", "-U", "${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_taskify_data:
+    driver: local
